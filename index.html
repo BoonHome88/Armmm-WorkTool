@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armmm WorkTool</title>
+	<link rel="icon" type="image/png" href="https://img2.pic.in.th/pic/firefa5f740f9c0e5c40.png">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+    function transitionToPage(url) {
+        gsap.to("body", { opacity: 0, filter: "blur(5px)", duration: 0.1, onComplete: () => window.location.href = url });
+    }
+
+    // ทำให้หน้า Fade-in + Unblur เมื่อโหลด
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.from("body", { opacity: 0, filter: "blur(5px)", duration: 0.1 });
+    });
+</script>
+
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* กล่องคอนเทนเนอร์ที่จัดแสดงแบบ Flex */
+        .container {
+            display: flex;
+            justify-content: center; /* ทำให้หัวข้ออยู่ตรงกลาง */
+            flex-direction: column; /* จัดให้หัวข้ออยู่ในแนวตั้ง */
+            text-align: center;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            gap: 30px; /* เพิ่มระยะห่างระหว่างหัวข้อ */
+        }
+
+        /* เพิ่มระยะห่างระหว่างหัวข้อ */
+        h1 {
+            margin: 2;
+            font-size: 25px;
+            color: #333;
+        }
+
+        /* ปรับแต่งปุ่ม */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px 0;
+            background-color: #CC0033;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+		/* ปรับแต่งปุ่ม */
+        .btn2 {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px 0;
+            background-color: #FF9933;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+/* ปรับแต่งปุ่ม */
+        .btn3 {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px 0;
+            background-color: #6699CC;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+		<div class="message-box">
+		<img src="https://img5.pic.in.th/file/secure-sv1/bear141ea44788ba4511.png" width="60">
+		
+			<h1>Armmm WorkTool</h1>
+			<p>Made by ChatGPT & Notepad++ │ Support HugTown / Midnight Racing</p>
+			<h4>( FOR : MOO TEDET99 & METANG  )</h4>
+		</div>
+		&emsp;&emsp;
+		<div class="container">
+        <div>
+            <h1>HUGTOWN</h1>
+            <a href="#" class="btn" onclick="transitionToPage('subhug.html')">เริ่มการทำงาน</a>
+        </div>
+
+        <div>
+            <h1>MR Original</h1>
+            <a href="#" class="btn3" onclick="transitionToPage('submr.html')">เริ่มการทำงาน</a>
+        </div>
+    </div>
+</body>
+</html>
