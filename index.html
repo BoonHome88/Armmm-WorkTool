@@ -55,7 +55,7 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Armmm WorkTool Online</h2>
+        <h2>Login : Armmm WorkTool</h2>
         <input type="text" id="username" placeholder="ชื่อผู้ใช้">
         <input type="password" id="password" placeholder="รหัสผ่าน">
         <button onclick="login()">เข้าสู่ระบบ</button>
@@ -73,6 +73,10 @@
             } else {
                 document.getElementById("message").innerText = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
             }
+        }
+        // ตรวจสอบว่าผู้ใช้ล็อกอินแล้วหรือยังในทุกหน้าที่สำคัญ
+        if (window.location.pathname !== "/index.html" && localStorage.getItem("loggedIn") !== "true") {
+            window.location.href = "index.html";
         }
     </script>
 </body>
