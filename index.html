@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login : Armmm Management</title>
 	<link rel="icon" type="image/png" href="https://img2.pic.in.th/pic/passwordf8b74dd734c5e36c.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="auth.js"></script>
+ <script>
+        function transitionToPage(url) {
+            gsap.to("body", { opacity: 0, filter: "blur(5px)", duration: 0.2, onComplete: () => window.location.href = url });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.from("body", { opacity: 0, filter: "blur(5px)", duration: 0.2 });
+            
+            // ตรวจสอบว่าผู้ใช้ล็อกอินหรือยัง
+            if (!localStorage.getItem("loggedIn")) {
+                window.location.href = "index.html";
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            window.location.href = "index.html";
+        }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
