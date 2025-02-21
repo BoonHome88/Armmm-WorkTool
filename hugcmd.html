@@ -6,6 +6,7 @@
     <title>คำสั่ง HugTown</title>
 	<link rel="icon" type="image/png" href="https://img2.pic.in.th/pic/hug-town-13d64c9ed5874aab0.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="auth.js"></script>
 <script>
     function transitionToPage(url) {
@@ -243,12 +244,23 @@
                 <p id="text29">/stophelp</p>
                 <button class="copy-btn" onclick="copyText('text29')">คัดลอก</button>
             </div>
-	    <script>
+ <script>
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
-                alert("Done: " + text);
+                Swal.fire({
+                    title: "คัดลอกสำเร็จ!",
+                    text: `คุณคัดลอก: "${text}"`,
+                    icon: "success",
+                    confirmButtonText: "ตกลง"
+                });
             }).catch(err => {
+                Swal.fire({
+                    title: "เกิดข้อผิดพลาด!",
+                    text: "ไม่สามารถคัดลอกข้อความได้",
+                    icon: "error",
+                    confirmButtonText: "ลองใหม่"
+                });
                 console.error("เกิดข้อผิดพลาดในการคัดลอก: ", err);
             });
         }
