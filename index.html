@@ -63,18 +63,33 @@
     </div>
     
     <script src="auth.js"></script>
-    <script>
-        function login() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            
-            if (username === "Armmm" && password === "9182") {
+   <script>
+    function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // ข้อมูลผู้ใช้
+        var users = [
+            { username: "Armmm", password: "9182" },
+            { username: "Dang", password: "1234" },
+        ];
+
+        // ตรวจสอบว่า user ที่กรอกตรงกับข้อมูลใน array หรือไม่
+        var userFound = false;
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].username === username && users[i].password === password) {
+                userFound = true;
                 localStorage.setItem("loggedIn", "true");
                 window.location.href = "Home.html"; // เปลี่ยนไปหน้าหลัก
-            } else {
-                document.getElementById("message").innerText = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+                break;
             }
         }
-    </script>
+
+        if (!userFound) {
+            document.getElementById("message").innerText = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+        }
+    }
+</script>
+
 </body>
 </html>
