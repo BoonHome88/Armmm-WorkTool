@@ -156,12 +156,23 @@
 </div>
     <p>TikTok 20 ลูก สตรีมชั่วโมงละ 10 ลูก</p>
     </div>	
-	    <script>
+<script>
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
-                alert("Done: " + text);
+                Swal.fire({
+                    title: "คัดลอกสำเร็จ!",
+                    text: `คุณคัดลอก: "${text}"`,
+                    icon: "success",
+                    confirmButtonText: "ตกลง"
+                });
             }).catch(err => {
+                Swal.fire({
+                    title: "เกิดข้อผิดพลาด!",
+                    text: "ไม่สามารถคัดลอกข้อความได้",
+                    icon: "error",
+                    confirmButtonText: "ลองใหม่"
+                });
                 console.error("เกิดข้อผิดพลาดในการคัดลอก: ", err);
             });
         }
