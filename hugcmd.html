@@ -256,22 +256,28 @@
                 <p id="text29">/stophelp</p>
                 <button class="copy-btn" onclick="copyText('text29')">คัดลอก</button>
             </div>
- <script>
+<script>
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
                 Swal.fire({
                     title: "คัดลอกสำเร็จ!",
-                    text: "${text}"`,
+                    text: `"${text}"`, // แสดงเฉพาะข้อความที่ถูกคัดลอก
                     icon: "success",
-                    confirmButtonText: "ตกลง"
+                    confirmButtonText: "ตกลง",
+                    customClass: {
+                        confirmButton: "swal2-confirm"
+                    }
                 });
             }).catch(err => {
                 Swal.fire({
                     title: "เกิดข้อผิดพลาด!",
                     text: "ไม่สามารถคัดลอกข้อความได้",
                     icon: "error",
-                    confirmButtonText: "ลองใหม่"
+                    confirmButtonText: "ลองใหม่",
+                    customClass: {
+                        confirmButton: "swal2-confirm"
+                    }
                 });
                 console.error("เกิดข้อผิดพลาดในการคัดลอก: ", err);
             });
