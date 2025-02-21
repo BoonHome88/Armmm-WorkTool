@@ -165,31 +165,27 @@
     <p>TikTok 20 ลูก สตรีมชั่วโมงละ 10 ลูก</p>
     </div>	
 <script>
-        function copyText(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                Swal.fire({
-                    title: "คัดลอกสำเร็จ!",
-                    text: `"${text}"`, // แสดงเฉพาะข้อความที่ถูกคัดลอก
-                    icon: "success",
-                    confirmButtonText: "ตกลง",
-                    customClass: {
-                        confirmButton: "swal2-confirm"
-                    }
-                });
-            }).catch(err => {
-                Swal.fire({
-                    title: "เกิดข้อผิดพลาด!",
-                    text: "ไม่สามารถคัดลอกข้อความได้",
-                    icon: "error",
-                    confirmButtonText: "ลองใหม่",
-                    customClass: {
-                        confirmButton: "swal2-confirm"
-                    }
-                });
-                console.error("เกิดข้อผิดพลาดในการคัดลอก: ", err);
+    function copyText(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            Swal.fire({
+                title: "คัดลอกสำเร็จ!",
+                text: `"${text}"`,
+                icon: "success",
+                showConfirmButton: false, // ซ่อนปุ่มตกลง
+                timer: 1000 // ปิดอัตโนมัติหลัง 1.5 วินาที
             });
-        }
-    </script>
+        }).catch(err => {
+            Swal.fire({
+                title: "เกิดข้อผิดพลาด!",
+                text: "ไม่สามารถคัดลอกข้อความได้",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 2000
+            });
+            console.error("เกิดข้อผิดพลาดในการคัดลอก: ", err);
+        });
+    }
+</script>
 </body>
 </html>
