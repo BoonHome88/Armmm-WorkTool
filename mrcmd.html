@@ -6,6 +6,7 @@
     <title>คำสั่ง Midnight</title>	
 	<link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/Asset_7.png">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="auth.js"></script>
 <script>
     function transitionToPage(url) {
@@ -177,12 +178,23 @@
 </body>
 </html>
     </div>
-    <script>
+ <script>
         function copyText(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text).then(() => {
-                alert("คัดลอกข้อความแล้ว: " + text);
+                Swal.fire({
+                    title: "คัดลอกสำเร็จ!",
+                    text: `คุณคัดลอก: "${text}"`,
+                    icon: "success",
+                    confirmButtonText: "ตกลง"
+                });
             }).catch(err => {
+                Swal.fire({
+                    title: "เกิดข้อผิดพลาด!",
+                    text: "ไม่สามารถคัดลอกข้อความได้",
+                    icon: "error",
+                    confirmButtonText: "ลองใหม่"
+                });
                 console.error("เกิดข้อผิดพลาดในการคัดลอก: ", err);
             });
         }
