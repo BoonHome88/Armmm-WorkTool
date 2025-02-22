@@ -3,47 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armmm Management - Home</title>
+    <title>Login : Armmm Management</title>
     <link rel="icon" type="image/png" href="https://img2.pic.in.th/pic/passwordf8b74dd734c5e36c.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="auth.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #333;
-            color: white;
-            padding: 10px 20px;
-        }
-        .menu {
-            display: flex;
-            gap: 20px;
-        }
-        .menu a {
-            color: white;
-            text-decoration: none;
-        }
-        .user-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn {
-            padding: 8px 12px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .btn-logout {
-            background: #f44336;
-            color: white;
-        }
         footer {
             position: fixed;
             bottom: 0;
@@ -53,57 +18,100 @@
             text-align: center;
             padding: 10px 0;
         }
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+    overflow: hidden; /* ป้องกันการเลื่อน */
+}
+
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #56aaff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #22588e;
+        }
+        #message {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">🌟 Armmm Management</div>
-        <div class="menu">
-            <a href="#">หน้าแรก</a>
-            <a href="#">งาน</a>
-            <a href="#">ติดต่อ</a>
-        </div>
-        <div class="user-box">
-            <span id="username">กำลังโหลด...</span>
-            <button id="logoutBtn" class="btn btn-logout">ออกจากระบบ</button>
-        </div>
-    </nav>
-
-    <h2 style="text-align:center; margin-top: 50px;">ยินดีต้อนรับ!</h2>
-
+    <div class="login-container">
+        <h2>Armmm Management</h2>
+        <input type="text" id="username" placeholder="ชื่อผู้ใช้">
+        <input type="password" id="password" placeholder="รหัสผ่าน">
+        <button onclick="login()">เข้าสู่ระบบ</button>
+        <p id="message"></p>
+    </div>
+    
     <script>
-        function checkLogin() {
-            let user = localStorage.getItem("loggedInUser");
-            let usernameEl = document.getElementById("username");
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
 
-            if (user) {
-                usernameEl.textContent = `👤 ${user}`;
-            } else {
-                window.location.href = "index.html"; // กลับไปที่หน้าล็อกอินถ้ายังไม่ล็อกอิน
+            var users = [
+                { username: "Armmm", password: "9182" },
+                { username: "Dang", password: "1234" },
+            ];
+
+            var userFound = false;
+            for (var i = 0; i < users.length; i++) {
+                if (users[i].username === username && users[i].password === password) {
+                    userFound = true;
+                    localStorage.setItem("loggedIn", "true");
+                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'เข้าสู่ระบบสำเร็จ!',
+                        text: 'ได้เวลาทำงานแล้วนะ ' + username,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        window.location.href = "Home.html";
+                    });
+                    break;
+                }
+            }
+
+            if (!userFound) {
+                document.getElementById("message").innerText = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
             }
         }
-
-        function logout() {
-            localStorage.removeItem("loggedInUser");
-            Swal.fire({
-                icon: 'info',
-                title: 'ออกจากระบบสำเร็จ!',
-                showConfirmButton: false,
-                timer: 1500
-            }).then(() => {
-                window.location.href = "index.html";
-            });
-        }
-
-        document.getElementById("logoutBtn").addEventListener("click", logout);
-        checkLogin();
     </script>
-
 <footer>
     <p>&copy; 2025 Armmm WorkTool. All rights reserved.</p>
 </footer>
-
 </body>
 </html>
